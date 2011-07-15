@@ -4,7 +4,7 @@ require_relative './exercise'
 	
 module DatabaseHelper
 	ActiveRecord::Base.establish_connection(
-        :adapter  => "mysql2",
+        :adapter  => "mysql",
         :host     => "localhost",
         :database => "test"
         #:username => "admin",
