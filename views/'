@@ -1,0 +1,13 @@
+%html
+	%head
+		%title List of exercies
+	%body
+		-@exercises.each do |e|
+			%table
+				%tr
+					%td			
+						=#{e.name}
+					%td
+						=#{e.description}
+					%td
+						=#{e.unit_id}
