@@ -9,18 +9,18 @@ class ExerciseTestCase < Test::Unit::TestCase
 		description = "test exercise description"
 		unit_id = 999999
 		
-        new_exercise = Exercise.create( :name => name, :description => description, :unit_id => unit_id )
+        @exercise = Exercise.create( :name => name, :description => description, :unit_id => unit_id )
 
-		found_exercise = Exercise.find( :last )
-        #put found_exercise.connected?
-        p found_exercise.name
-		assert( 'bar2', found_exercise.description ) 
+        found_exercise = Exercise.find( :first, :conditions => [ "name = ?", name ] )
+        
+        assert_equal( unit_id, found_exercise.unit_id )
+        assert_equal( name, found_exercise.name )
+        assert_equal( description, found_exercise.description ) 
  
 	end
 
     def teardown
-        exercise = Exercise.find( :last )
-        exercise.destroy()
+        @exercise.destroy()
     end
 
 end
