@@ -1,6 +1,6 @@
 require 'rubygems'
 require 'active_record'
-require_relative 'databaseHelper'
+require_relative 'database_helper'
 
 class Exercise < ActiveRecord::Base
     include DatabaseHelper
