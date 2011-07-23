@@ -5,8 +5,8 @@ module DatabaseHelper
 	ActiveRecord::Base.establish_connection(
         :adapter  => "mysql",
         :host     => "localhost",
-        :database => "test"
-        #:username => "admin",
+        :database => "test",
+        :username => "mysql"
         #:password => "secret"
     )
 end

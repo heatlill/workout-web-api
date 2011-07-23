@@ -7,4 +7,7 @@ class ExerciseUnit < ActiveRecord::Base
     set_table_name( 'exercise_units' )
     set_primary_key( 'id ')
 
+    def to_s
+        puts "#{id} #{name} #{description}"
+    end
 end
