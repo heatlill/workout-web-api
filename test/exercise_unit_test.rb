@@ -8,16 +8,17 @@ class ExerciseUnitTest < Test::Unit::TestCase
         name = 'test exercise unit name'
         description = 'test exercise description'
 
-        Exercise.transaction do
-            @unit = ExerciseUnit.create( :name => name, :description => description )
+        ExerciseUnit.transaction do
+            ExerciseUnit.create( :name => name, :description => description )
         
-            found_unit = ExerciseUnit.find( :first, :conditions => [ "name = ?", name ] )
+            @unit = ExerciseUnit.find( :last, :conditions => [ "name = ?", name ] )
 
-            assert_equal( name, found_unit.name )
-            assert_equal( description, found_unit.description )
+            assert_equal( name, @unit.name )
+            assert_equal( description, @unit.description )
         end
     end
     def teardown
-        @unit.delete( @unit.id )
+        puts @unit.to_s
+        ExerciseUnit.delete( @unit.id )
     end
 end
