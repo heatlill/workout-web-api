@@ -22,7 +22,6 @@ class ExerciseUnitTest < Test::Unit::TestCase
         end
     end
     def teardown
-        puts @unit.to_s
-        ExerciseUnit.delete( @unit.id )
+        ExerciseUnit.delete( @unit.id ) unless @unit.nil?
     end
 end

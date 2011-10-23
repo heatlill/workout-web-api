@@ -22,7 +22,7 @@ class ExerciseTest < Test::Unit::TestCase
                 assert_equal( test_unit.id, @exercise.exercise_unit_id )
                 assert_equal( name, @exercise.name )
                 assert_equal( description, @exercise.description ) 
-            rescue ActiveRecord::ActivRecordError
+            rescue ActiveRecord::ActiveRecordError
                 raise ActiveRecord::Rollback
             end
         end
@@ -30,7 +30,7 @@ class ExerciseTest < Test::Unit::TestCase
 	end
 
     def teardown
-        Exercise.delete( @exercise.id )
+        Exercise.delete( @exercise.id ) unless @exercise.nil?
     end
 
 end
