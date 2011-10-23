@@ -1,0 +1,11 @@
+<html>
+<script>
+	function set_delete_id() {
+		action = document.forms[1].action 
+		document.forms[1].action = action + '/' + document.forms[1].id
+	}
+</script>
+	<form method="post" action="http://localhost:4567/workout_api/save_exercise/name/description/123"><input type="submit" value="create"></form>
+	<a href="http://localhost:4567/workout_api/show_exercises/">show</a>
+	<form method="delete" action="http://localhost:4567/workout_api/delete_exercise" on_submit="set_delete_id()"><input type="text" name="id"><input type="submit" value="delete"></form>
+</html>
