@@ -30,8 +30,13 @@ delete '/workout_api/delete_exercise/:id' do
 end
 
 post '/workout_api/save_exercise/:name/:description/:unit_id' do
+    addExercise( params[:name], params[:description], params[:unit_id] )
+    redirect back
+end
+
+def addExercise( name, description, unit_id )
 	name = params[:name] 
 	description = params[:description]
 	unit_id = params[:unit_id]
-	Exercise.create( :name => name, :description => description, :unit_id => unit_id )
+	Exercise.create( :name => name, :description => description, :exercise_unit_id => unit_id )
 end
