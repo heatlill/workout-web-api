@@ -4,11 +4,10 @@
     %body
 
     :javascript
-        function set_delete_id() {
-            action = document.forms[1].action 
-            document.forms[1].action.value = action + '/' + document.forms[1].id.value
-            alert( document.forms[1].action.text );
-            # document.forms[1].submit();
+        function delete_exercise( form, id ) {
+            action = form.action 
+            form.action = action + id 
+            form.submit();
         }
     %form{ :method => "post", :action => "http://localhost:4567/workout_api/save_exercise/name/description/123"}
         %input{ :type => "submit", :value => "create"}
@@ -23,6 +22,5 @@
                 %td #{e.description}
                 %td #{e.exercise_unit_id}
                 %td 
-                    %form{ :method => "delete", :action => "http://localhost:4567/workout_api/delete_exercise" }
-                        %input{ :type => "hidden", :value =>"#{e.id}" }
-                        %input{ :type => "button",  :value => "Delete", :onclick => "this.form.submit()"}
+                    %form{ :method => "delete", :action => "http://localhost:4567/workout_api/delete_exercise/" }
+                        %input{ :type => "button",  :value => "Delete", :onclick => "delete_exercise( this.form, #{e.id} )"}

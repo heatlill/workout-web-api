@@ -27,6 +27,7 @@ end
 delete '/workout_api/delete_exercise/:id' do
 	id = params[:id]
 	Exercise.delete( :id => id )
+    redirect back
 end
 
 post '/workout_api/save_exercise/:name/:description/:unit_id' do
