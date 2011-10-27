@@ -22,5 +22,5 @@
                 %td #{e.description}
                 %td #{e.exercise_unit_id}
                 %td 
-                    %form{ :method => "delete", :action => "http://localhost:4567/workout_api/delete_exercise/" }
-                        %input{ :type => "button",  :value => "Delete", :onclick => "delete_exercise( this.form, #{e.id} )"}
+                    %form{ :method => "post", :_method => "delete", :action => "http://localhost:4567/workout_api/delete_exercise/#{e.id}" }
+                        %input{ :type => "submit"}

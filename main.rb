@@ -14,6 +14,8 @@ ActiveRecord::Base.establish_connection(
   :database => "test"
 )
 
+use Rack::MethodOverride
+
 get '/workout_api/exercises/' do
 	
 end
@@ -24,9 +26,8 @@ get '/workout_api/show_exercises/' do
 	haml :exercises
 end
 
-delete '/workout_api/delete_exercise/:id' do
-	id = params[:id]
-	Exercise.delete( :id => id )
+post '/workout_api/delete_exercise/:id' do
+	Exercise.delete( params[:id] )
     redirect back
 end
 
