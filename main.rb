@@ -4,7 +4,6 @@
 require 'rubygems'
 require 'sinatra'
 require 'active_record'
-require_relative 'db/exercise'
 require 'haml'
 require_relative 'db/database_helper'
 require_relative 'db/exercise'
@@ -19,10 +18,8 @@ require_relative 'db/exercise'
 include DatabaseHelper
 use Rack::MethodOverride
 
-use Rack::MethodOverride
-
 get '/workout_api/exercises/' do
-	
+    'Hello World!'	
 end
 
 get '/workout_api/show_exercises/' do

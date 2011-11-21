@@ -5,7 +5,7 @@ source "http://rubygems.org"
 
 # Add dependencies to develop your gem here.
 # Include everything needed to run rake, tests, features, etc.
-group :development do
+#group :development do
   gem "sinatra", "> 0"
   gem "activerecord" , "3.0.9"
   gem "shoulda"      , ">= 0"
@@ -14,4 +14,4 @@ group :development do
   gem "rcov"         , ">= 0"
   gem "mysql2"       , ">= 0.2.7"
   gem "rake"         , "0.8.7"
-end
+#end
