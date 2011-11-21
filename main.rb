@@ -4,16 +4,18 @@
 require 'rubygems'
 require 'sinatra'
 require 'active_record'
-require_relative 'db/exercise'
 require 'haml'
-ActiveRecord::Base.establish_connection(
-  :adapter => "mysql",
-  :host => "localhost",
-  #:username => "<your database username>",
-  #:password => "<your database password>",
-  :database => "test"
-)
+require_relative 'db/database_helper'
+require_relative 'db/exercise'
 
+#ActiveRecord::Base.establish_connection(
+#  :adapter => "mysql",
+#  :host => "localhost",
+#  #:username => "<your database username>",
+#  #:password => "<your database password>",
+#  :database => "test"
+#)
+include DatabaseHelper
 use Rack::MethodOverride
 
 get '/workout_api/exercises/' do
