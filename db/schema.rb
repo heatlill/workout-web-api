@@ -3,7 +3,7 @@ require 'active_record'
 require_relative 'database_helper'
 
 ActiveRecord::Base.establish_connection({
-    :adapter => "mysql",
+    :adapter => "mysql2",
     :host => "localhost",
     :database => "test",
     :username=> "root"

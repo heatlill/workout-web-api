@@ -3,7 +3,7 @@ require 'active_record'
 	
 module DatabaseHelper
 	ActiveRecord::Base.establish_connection(
-        :adapter  => "mysql",
+        :adapter  => "mysql2",
         :host     => "localhost",
         :database => "test",
         :username => "mysql"
