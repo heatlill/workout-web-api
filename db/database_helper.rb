@@ -2,11 +2,12 @@ require 'rubygems'
 require 'active_record'
 	
 module DatabaseHelper
-	ActiveRecord::Base.establish_connection(
-        :adapter  => "mysql2",
+    DB_PARAMS = {
+        :adapter  => "postgresql",
         :host     => "localhost",
         :database => "test",
-        :username => "mysql"
-        #:password => "secret"
-    )
+        :username => "postgres",
+        :password => "test"
+    }
+	ActiveRecord::Base.establish_connection(DB_PARAMS)
 end

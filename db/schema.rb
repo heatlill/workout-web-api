@@ -2,12 +2,17 @@ require 'rubygems'
 require 'active_record'
 require_relative 'database_helper'
 
-ActiveRecord::Base.establish_connection({
-    :adapter => "mysql2",
-    :host => "localhost",
-    :database => "test",
-    :username=> "root"
-}) 
+include DatabaseHelper
+
+
+puts 'Connecting to maintenance datatbase.'
+ActiveRecord::Base.establish_connection(DB_PARAMS.merge('database' => 'template1', 'schema_search_path' => 'public'))
+# delete old
+puts "Dropping database: #{DB_PARAMS[:database]}."
+ActiveRecord::Base.connection.drop_database DB_PARAMS[:database]  
+# create new
+puts "Creating new database #{DB_PARAMS[:database]}."
+ActiveRecord::Base.connection.create_database(DB_PARAMS[:database])  
 
 ActiveRecord::Schema.define do
     create_table ( :exercise ) do |t|
@@ -44,5 +49,4 @@ ActiveRecord::Schema.define do
         t.column :password, :string
         t.column :active, :boolean
     end
-    
 end
