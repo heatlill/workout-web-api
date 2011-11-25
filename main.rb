@@ -18,7 +18,7 @@ require_relative 'db/exercise'
 include DatabaseHelper
 use Rack::MethodOverride
 
-get '/workout_api/exercises/' do
+get '/' do
     'Hello World!'	
 end
 
