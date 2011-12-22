@@ -2,6 +2,8 @@ require 'rubygems'
 require 'active_record'
 	
 module DatabaseHelper
+    database_url = ENV['database_url'] 
+    database_url |= 'test'
     DB_PARAMS = {
         :adapter  => "postgresql",
         :host     => "localhost",
