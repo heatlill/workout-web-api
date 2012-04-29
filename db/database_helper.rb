@@ -1,15 +1,18 @@
 require 'rubygems'
 require 'active_record'
-	
+require 'uri'
+
 module DatabaseHelper
-    database_url = ENV['database_url'] 
-    database_url |= 'test'
-    DB_PARAMS = {
-        :adapter  => "postgresql",
-        :host     => "localhost",
-        :database => "test",
-        :username => "postgres",
-        :password => "test"
+    #DB_PARAMS = {:adapter => "postgresql",:host => "localhost",:database => "test",:username => "postgres",:password => "test"}
+    
+    db = URI.parse(ENV['DATABASE_URL'] || 'postgresql://localhost/test')
+    DB_PARAMS = {    
+        :adapter => db.scheme == 'postgres' ? 'postgresql' : db.scheme,
+        :host => db.host,
+        :username => db.user.nil? ? 'postgres' : db.user,
+        :password => db.password.nil? ? 'test' : db.password,
+        :database => db.path[1..-1],
+        :encoding => 'utf8'
     }
-	ActiveRecord::Base.establish_connection(DB_PARAMS)
+    ActiveRecord::Base.establish_connection(DB_PARAMS)
 end

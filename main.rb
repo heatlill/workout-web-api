@@ -1,5 +1,4 @@
-#!/home/heath/.rvm/rubies/ruby-1.9.2-p180/bin/ruby
-# -- #!/usr/bin/ruby
+#!/usr/bin/ruby
 
 require 'rubygems'
 require 'sinatra'
