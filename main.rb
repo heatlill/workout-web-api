@@ -12,19 +12,24 @@ include DatabaseHelper
 use Rack::MethodOverride
 
 get '/workout_api/show_exercises/' do
-	exercises = Exercise.find( :all )
-	@exercises = exercises
-	haml :exercises
+    loadExercises()
 end
 
 post '/workout_api/delete_exercise/:id' do
-	Exercise.delete( params[:id] )
-    redirect back
+    puts "Deleting id #{params[:id]}"
+    Exercise.delete(params[:id])
+    loadExercises()
 end
 
 post '/workout_api/save_exercise/:name/:description/:unit_id' do
     addExercise( params[:name], params[:description], params[:unit_id] )
     redirect back
+end
+
+def loadExercises()
+	exercises = Exercise.find( :all )
+	@exercises = exercises
+	haml :exercises
 end
 
 def addExercise( name, description, unit_id )
