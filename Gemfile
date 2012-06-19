@@ -7,7 +7,7 @@ source "http://rubygems.org"
 # Include everything needed to run rake, tests, features, etc.
 #group :development do
   gem "activerecord" , "3.0.9"
-  gem "bundler"      , "1.0.21"
+  gem "bundler"      , "~>1.1.4"
   gem "haml"         , "3.1.3"
   gem "jeweler"      , "~> 1.6.4"
   gem "pg"           , "0.11.0"
@@ -15,4 +15,6 @@ source "http://rubygems.org"
   gem "rake"         , "0.8.7"
   gem "shoulda"      , "2.11.3"
   gem "sinatra"      , "1.3.1"
+  gem "rack-test"    , "0.6.1"
+  gem "test-unit"    , "2.5.0"
 #end

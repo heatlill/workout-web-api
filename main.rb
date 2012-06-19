@@ -25,6 +25,10 @@ post '/workout_api/save_exercise/:name/:description/:unit_id' do
     redirect back
 end
 
+post '/workout_api/save_workout' do
+    return params[:workout]
+end
+
 def loadExercises()
 	exercises = Exercise.find( :all )
 	@exercises = exercises
