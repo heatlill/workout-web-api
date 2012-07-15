@@ -1,18 +1,21 @@
 require 'rubygems'
 require 'active_record'
 require 'uri'
+require 'yaml'
 
 module DatabaseHelper
-    #DB_PARAMS = {:adapter => "postgresql",:host => "localhost",:database => "test",:username => "postgres",:password => "bruiser"}
+      
+    def self.read_local_yaml
+        @properties = YAML::load(File.open('db/db.yaml'))
+    end
+
+    def self.get_properties
+        if(@properties.nil?)
+            read_local_yaml
+        end
+        return @properties
+    end
+    puts "Connecting with #{get_properties()}" 
+    ActiveRecord::Base.establish_connection(get_properties())
     
-    db = URI.parse(ENV['DATABASE_URL'] || 'postgresql://localhost/test')
-    DB_PARAMS = {    
-        :adapter => db.scheme == 'postgres' ? 'postgresql' : db.scheme,
-        :host => db.host,
-        :username => db.user.nil? ? 'postgres' : db.user,
-        :password => db.password.nil? ? 'bruiser' : db.password,
-        :database => db.path[1..-1],
-        :encoding => 'utf8'
-    }
-    ActiveRecord::Base.establish_connection(DB_PARAMS)
 end

@@ -1,0 +1,6 @@
+port            :   '9998'
+database        :   'test'
+schema          :   'public'
+adapter         :   'postgresql'
+password        :   'bruiser'
+username        :   'postgres'
