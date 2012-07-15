@@ -1,0 +1,2 @@
+database_url :  'postgresql://localhost:9998/test'
+schema       :  'public'

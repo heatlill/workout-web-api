@@ -34,18 +34,19 @@ namespace :db do
         ActiveRecord::Migrator.down('db/migrate')
         ActiveRecord::Migrator.migrate('db/migrate')
     end
-    desc "Create databse migration."
-    task(:generate_schema) do
-        ActiveRecord::Base.logger = Logger.new(STDOUT)
-        File.open('db/schema_gen.rb', 'w') do |f|
-            ActiveRecord::SchemaDumper.dump(ActiveRecord::Base.connection, f)
-        end
-    end
-    desc "Load the database schema."
-    task(:schema) do
+    desc "Create the databse."
+    task(:create_database) do
         ActiveRecord::Base.logger = Logger.new(STDOUT)
         ActiveRecord::Migration.verbose = true
-        `ruby db/schema_gen.rb`
+        sh 'ruby db/create_database.rb'
+    end
+    desc "Drop the database."
+    task(:drop_database) do
+        ActiveRecord::Base.logger = Logger.new(STDOUT)
+        ActiveRecord::Migration.verbose = true
+        File.open('db/drop_database.rb', 'w') do |f|
+           ActiveRecord::SchemaDumper.dump(ActiveRecord::Base.connection, f) 
+        end
     end
 end
 

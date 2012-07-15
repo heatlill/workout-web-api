@@ -1,29 +1,17 @@
-#!/usr/bin/ruby
-
 require 'rubygems'
 require 'active_record'
-require_relative '../db/database_helper'
+require_relative 'database_helper'
 
 include DatabaseHelper
 
-puts 'Connecting to maintenance datatbase.'
-ActiveRecord::Base.establish_connection(DB_PARAMS.merge('database' => 'template1', 'schema_search_path' => 'public'))
-# delete old
-#puts "Dropping database: #{DB_PARAMS[:database]}."
-#ActiveRecord::Base.connection.drop_database DB_PARAMS[:database]  
 # create new
-#puts "Creating new database #{DB_PARAMS[:database]}."
-#ActiveRecord::Base.connection.create_database(DB_PARAMS[:database])  
+load_database_properties(true)
+puts 'Connecting to maintenance datatbase.'
+ActiveRecord::Base.establish_connection(get_db_params.merge('database' => 'template1', 'schema' => 'public'))
+puts "Creating new schema #{get_db_params[:schema]}."
+ActiveRecord::Base.connection.execute("create schema #{get_db_params[:schema]}")  
 
 ActiveRecord::Schema.define do
-
-#    drop_table(:exercise)
-#    drop_table(:exercise_unit)
-#    drop_table(:session_exercise)
-#    drop_table(:workout_session)
-#    drop_table(:user)
-
-
     create_table ( :exercise ) do |t|
         t.column :id, :integer, :primary_key => :id
         t.column :name, :string
