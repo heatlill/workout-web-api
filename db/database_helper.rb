@@ -15,7 +15,6 @@ module DatabaseHelper
         end
         return @properties
     end
-    puts "Connecting with #{get_properties()}" 
-    ActiveRecord::Base.establish_connection(get_properties())
-    
+
+    ActiveRecord::Base.establish_connection(load_database_properties)
 end

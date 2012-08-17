@@ -4,8 +4,6 @@ require_relative '../db/database_helper'
 
 class TestDatabaseHelper < Test::Unit::TestCase   
     include DatabaseHelper
-    
-    
     def test_database_properties_are_loaded        
         test_params = {
             'adapter'   => 'postgresql',
