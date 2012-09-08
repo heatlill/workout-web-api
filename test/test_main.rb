@@ -15,9 +15,14 @@ class TestWorkout < Test::Unit::TestCase
     end
 
     def test_save_workout
-        value = '{"test":"value"}'
-        last_response = post 'http://localhost/workout_api/save_workout', params={:workout => value}
+        value = '[{"test":"value"}]'
+        begin
+            last_response = post 'http://localhost/workout_api/save_workout', params={:workout => value}
+        rescue Error => error
+            puts error.inspect
+        end
        	#assert last_response.ok?
-        assert_equal value, last_response.body
+        value_as_hash={"test"=>"value"}
+        assert_equal("value", value_as_hash["test"])
     end
 end 

@@ -4,6 +4,7 @@ require 'rubygems'
 require 'sinatra'
 require 'active_record'
 require 'haml'
+require 'json'
 require_relative 'db/exercise'
 
 use Rack::MethodOverride
@@ -28,12 +29,13 @@ post '/workout_api/save_exercise/:name/:description/:unit_id' do
 end
 
 post '/workout_api/save_workout' do
-	params[:workout]
+    workout = JSON.parse(params[:workout])
+    return workout
 end
 
 def load_exercises()
-		@exercises = Exercise.find( :all )
-	    haml :exercises
+	@exercises = Exercise.find( :all )
+	haml :exercises
 end
 
 def add_exercise( name, description, unit_id )
@@ -41,7 +43,7 @@ def add_exercise( name, description, unit_id )
 	description = params[:description]
 	unit_id = params[:unit_id]
 	begin
-	Exercise.create( :name => name, :description => description, :exercise_unit_id => unit_id )
+	    Exercise.create( :name => name, :description => description, :exercise_unit_id => unit_id )
 	rescue ActiveRecord::ActiveRecordError => error
 		puts error
 	end

@@ -6,8 +6,9 @@ require 'yaml'
 module DatabaseHelper
       
     def self.read_local_yaml
-        @properties = YAML::load(File.open('db/db.yaml'))
-    end
+        file = ENV['DB_YML']
+        #url = ||= 'db/db.yaml'
+        @properties = YAML::load(File.open(file)) end
 
     def self.get_properties
         if(@properties.nil?)
