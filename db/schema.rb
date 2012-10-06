@@ -29,7 +29,7 @@ ActiveRecord::Schema.define do
         t.column :id, :integer, :private_key => :id 
         t.column :session_id, :integer
         t.column :exercise_id, :integer
-        t.column :unit_quantity, :integer
+        t.column :repitition_count, :integer
     end
 
     create_table ( :workout_session ) do |t|
