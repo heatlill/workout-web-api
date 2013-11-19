@@ -8,10 +8,10 @@ class TestDatabaseHelper < Test::Unit::TestCase
         test_params = {
             'adapter'   => 'postgresql',
             'schema'    => 'public',
-            'port'      => '9998',
-            'database'  => 'test',
-            'password'  => 'bruiser',
-            'username'  => 'postgres'
+            'port'      => '5432',
+            'database'  => 'workout_db_test',
+            'password'  => '',
+            'username'  => 'admin'
         }
         assert_equal(test_params, DatabaseHelper.get_properties)
     end

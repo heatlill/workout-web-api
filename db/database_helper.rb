@@ -8,7 +8,8 @@ module DatabaseHelper
     def self.read_local_yaml
         file = ENV['DB_YML']
         #url = ||= 'db/db.yaml'
-        @properties = YAML::load(File.open(file)) end
+        @properties = YAML::load(File.open(file)) 
+    end
 
     def self.get_properties
         if(@properties.nil?)
